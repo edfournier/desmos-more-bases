@@ -6,7 +6,7 @@
     "action": {
       "default_popup": "/popup/popup.html"
     },
-    "permissions": [],
+    "permissions": ["storage"],
     "content_scripts": [
         {
             "js": ["/scripts/content.js"],
