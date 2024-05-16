@@ -4,6 +4,23 @@
     "description": "Use more than decimal with Desmos!",
     "version": "1.0",
     "action": {
-      "default_popup": "./src/index.html"
-    }
+      "default_popup": "/popup/popup.html"
+    },
+    "permissions": [],
+    "content_scripts": [
+        {
+            "js": ["/scripts/content.js"],
+            "matches": ["https://www.desmos.com/scientific"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [ "/scripts/plugin.js"],
+            "matches": ["https://www.desmos.com/*"]
+        },
+        {
+            "resources": [ "/scripts/utils.js"],
+            "matches": ["https://www.desmos.com/*"]
+        }
+    ]
   }

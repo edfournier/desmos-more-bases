@@ -1,19 +1,22 @@
-import { mq, calc } from "./window.js";
+// Recieve messages from content script
+document.addEventListener("dmb-content-update", (e) => {
+    console.log("content.js recieved: " + e.detail.state);
+});
 
+const mathField = document.getElementsByClassName(
+    "dcg-math-field dcg-focus dcg-mq-editable-field dcg-mq-math-mode"
+    )[0];
+const mq = window.Desmos.MathQuill.MathField(mathField);	
+const calc = window.Calc;
+
+// Manipulate state
 mq.latex("1 + 2")
 const state = calc.getState();
 state.expressions.list[0].latex = mq.latex()	// Not always 0. 
 calc.setState(state);
 
-// Manipulate math field
-mq.keystroke("Backspace")
-mq.latex()	
-mq.latex("1 + 2")	
-
 function convert(hex) { 
     const n = 4;
-    const hex = "0xB";  
-
     // Two's complement on n-bit number
     let num = Number(hex); 
     if ((num >> (n - 1)) & 1) {
@@ -22,7 +25,6 @@ function convert(hex) {
     return num; 
 }
 
-// Parsing latex
 function extractHex(latex) {
     const result = [];
     for (let i = latex.indexOf("0x"); i != -1; i = latex.indexOf("0x", i)) {
