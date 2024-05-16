@@ -17,8 +17,8 @@ calc.setState(state);
 
 function convert(hex) { 
     const n = 4;
-    // Two's complement on n-bit number
     let num = Number(hex); 
+    // Sign extend
     if ((num >> (n - 1)) & 1) {
         num |= -1 << n;
     }
