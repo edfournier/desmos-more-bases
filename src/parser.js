@@ -1,6 +1,8 @@
+import { mq, calc } from "./window.js";
+
 mq.latex("1 + 2")
 const state = calc.getState();
-state.expressions.list[0].latex = mq.latex()	// Is it always 0? (probably)
+state.expressions.list[0].latex = mq.latex()	// Not always 0. 
 calc.setState(state);
 
 // Manipulate math field

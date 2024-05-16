@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Desmos More Bases",
+    "description": "Use more than decimal with Desmos!",
+    "version": "1.0",
+    "action": {
+      "default_popup": "./src/index.html"
+    }
+  }
