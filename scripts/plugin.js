@@ -1,6 +1,6 @@
 // Recieve order to execute or state updates from content script
 document.addEventListener("dmb-run", run);  
-document.addEventListener("dmb-update-settings", (e) => {
+document.addEventListener("dmb-update", (e) => {
     console.log("New settings: " + e.detail);
 });
 
@@ -10,7 +10,7 @@ document.addEventListener("dmb-update-settings", (e) => {
 function toDecimal(string) {
     const n = 64;
     if ((string.length - 2) * 4 > n) {
-        alert(`${string} is too large for storage size n=${n}`);
+        alert(`${string} is too large for storage size n=${n} bits.`);
         return string;
     }
     let num = BigInt(string); 
@@ -22,24 +22,33 @@ function toDecimal(string) {
 }
 
 /*
- * Extract and clean hex tokens from given latex string
+ * Returns a function that searches a given latex string for tokens starting 
+ * with prefix and containing characters in the RegEx class digits
+ * 
+ * E.g. extractBase("0x", /[0-9a-fA-F_{}]/)("0x_{2}A") --> [{token: "0x_{2}A", clean: "0x2A"}]
+ * E.g. extractBase("0b", /01/)("0b_{10}")             --> [{token: "0b_{10}", clean: "0b10"}]
  */
-function extractHex(latex) {
-    const result = [];
-    for (let i = latex.indexOf("0x"); i != -1; i = latex.indexOf("0x", i)) {
-        let j = i;
-        while (j < latex.length && /[x0-9a-fA-F_{}]/g.test(latex.charAt(j))) {
-            j++;
+function extractBase(prefix, digits) {
+    return (latex) => {
+        const result = [];
+        for (let i = latex.indexOf(prefix); i != -1; i = latex.indexOf(prefix, i)) {
+            let j = i + 2;
+            while (j < latex.length && digits.test(latex.charAt(j))) {
+                j++;
+            }
+            while (latex.charAt(j - 1) === '}' && latex.charAt(j - 2) === '}') {
+                j--;
+            }
+            const token = latex.substring(i, j);
+            result.push({token: token, clean: token.replace(/[_{}]/g, "")});
+            i = j;
         }
-        while (latex.charAt(j - 1) === '}' && latex.charAt(j - 2) === '}') {
-            j--;
-        }
-        const token = latex.substring(i, j);
-        result.push({token: token, clean: token.replace(/[^x0-9a-fA-F]/g, "")});
-        i = j;
+        return result;
     }
-    return result;
-}
+}  
+
+const extractHex = extractBase("0x", /[0-9a-fA-F_{}]/);
+const extractBinary = extractBase("0b", /01/);
 
 const mathField = document.getElementsByClassName(
     "dcg-math-field dcg-focus dcg-mq-editable-field dcg-mq-math-mode"
@@ -48,7 +57,7 @@ const mq = window.Desmos.MathQuill.MathField(mathField);
 const calc = window.Calc;
 
 /*
- * Replace hex literals with decimal in webpage
+ * Replace hex literals with decimal in web page
  */ 
 function run() {
     let latex = mq.latex();
@@ -56,7 +65,6 @@ function run() {
         latex = latex.replace(hex.token, toDecimal(hex.clean));
     });
     const state = calc.getState();
-    mq.latex(latex);
-    state.expressions.list[0].latex = mq.latex();  // TODO: not always 0
+    state.expressions.list[0].latex = latex;  // TODO: not always 0
     calc.setState(state);
 }

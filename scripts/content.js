@@ -1,4 +1,4 @@
-// Inject script into DOM, giving access to the webpage's window object
+// Inject script into DOM, giving access to the web page's window object
 const script = document.createElement("script");
 script.setAttribute("type", "module");
 script.setAttribute("src", `chrome-extension://${chrome.runtime.id}/scripts/plugin.js`);
