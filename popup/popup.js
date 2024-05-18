@@ -6,7 +6,7 @@ const hexButton = document.getElementById("hex-button");
 
 saveButton.addEventListener("click", saveSettings);
 resetButton.addEventListener("click", resetSettings);
-hexButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run" }));
+hexButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run-hex" }));
 
 // Set stored user settings
 const local = await chrome.storage.local.get();
