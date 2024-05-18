@@ -3,6 +3,7 @@ const bitsInput = document.getElementById("bits-input");
 const saveButton = document.getElementById("save-button");
 const resetButton = document.getElementById("reset-button");
 const hexButton = document.getElementById("hex-button");
+const binButton = document.getElementById("bin-button");
 
 saveButton.addEventListener("click", saveSettings);
 resetButton.addEventListener("click", resetSettings);
