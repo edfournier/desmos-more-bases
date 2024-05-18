@@ -1,6 +1,6 @@
 html {
-    width: 300px;
-    height: 180px;
+    width: 450px;
+    height: 200px;
 }
 
 body {
@@ -35,7 +35,7 @@ label {
 }
 
 input {
-    font-family: "Montserrat", sans-serif;
+    font-family: inherit;
     padding: 8px;
     margin-top: 15px;
     width: 80px;
@@ -51,7 +51,14 @@ input:focus{
     outline: 1px solid #2f72dc;  
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button {
+    font-family: inherit;
     margin-top: 20px;
     padding: 8px 16px; 
     background-color: #2f72dc; 
@@ -66,16 +73,6 @@ button:hover {
     background-color: #0d47a1; 
 }
 
-button#reset-button {
+button#reset-button, button#hex-button, button#bin-button {
     margin-left: 5px;
-}
-
-button#hex-button {
-    margin-left: 5px;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
