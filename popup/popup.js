@@ -1,11 +1,11 @@
-const save = document.getElementById("save");
 const form = document.getElementById("form");
-const reset = document.getElementById("reset");
-const convertHex = document.getElementById("convert-hex");
+const saveButton = document.getElementById("save-button");
+const resetButton = document.getElementById("reset-button");
+const hexButton = document.getElementById("hex-button");
 
-save.addEventListener("click", saveSettings);
-reset.addEventListener("click", resetSettings);
-convertHex.addEventListener("click", () => sendMessageToContent({ event: "dmb-run" }));
+saveButton.addEventListener("click", saveSettings);
+resetButton.addEventListener("click", resetSettings);
+hexButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run" }));
 
 /*
  * Saves user settings to local storage and notifies content script

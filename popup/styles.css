@@ -29,15 +29,17 @@ label {
     font-weight: bold;
     color: white;
     display: inline-block;
-    width: 60px; 
     text-align: right; 
+    margin-right: 5px;
 }
 
 input {
+    font-family: "Montserrat", sans-serif;
     padding: 8px;
     margin-top: 15px;
-    width: 50px;
-    border: 1px solid #99a3ad; 
+    width: 80px;
+    height: 25px;
+    border: 0px;
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #364156; 
