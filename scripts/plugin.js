@@ -18,7 +18,7 @@ function toDecimal(string) {
 }
 
 /*
- *
+ * Extract and clean hex tokens from given latex string
  */
 function extractHex(latex) {
     const result = [];
@@ -31,7 +31,7 @@ function extractHex(latex) {
             j--;
         }
         const token = latex.substring(i, j);
-        result.push({token: token, stripped: token.replace(/[^x0-9a-fA-F]/g, "")});
+        result.push({token: token, clean: token.replace(/[^x0-9a-fA-F]/g, "")});
         i = j;
     }
     return result;
@@ -46,7 +46,7 @@ const calc = window.Calc;
 function run() {
     let latex = mq.latex();
     extractHex(latex).forEach((hex) => {
-        latex = latex.replace(hex.token, toDecimal(hex.stripped));
+        latex = latex.replace(hex.token, toDecimal(hex.clean));
     });
     const state = calc.getState();
     mq.latex(latex);
