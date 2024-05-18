@@ -8,8 +8,7 @@ document.head.appendChild(script);
 chrome.runtime.onMessage.addListener(sendMessageToPlugin);
 
 /*
- * Forward poupup script message to plugin script as DOM event
- * @param message: { event, detail }
+ * Forward popup script message: { event, detail } to plugin script as DOM event
  */
 function sendMessageToPlugin(message) {
     document.dispatchEvent(new CustomEvent(message.event, {
