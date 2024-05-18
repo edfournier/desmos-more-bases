@@ -17,10 +17,6 @@
         {
             "resources": [ "/scripts/plugin.js"],
             "matches": ["https://www.desmos.com/*"]
-        },
-        {
-            "resources": [ "/scripts/utils.js"],
-            "matches": ["https://www.desmos.com/*"]
         }
     ]
   }

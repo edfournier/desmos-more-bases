@@ -16,7 +16,7 @@ function toDecimal(string) {
     let num = BigInt(string); 
     // Sign extend
     if ((num >> BigInt(n - 1)) & BigInt(1)) {
-        num |= -1 << n;
+        num |= BigInt(-1) << BigInt(n);
     }
     return num; 
 }
