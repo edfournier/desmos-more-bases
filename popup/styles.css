@@ -61,11 +61,11 @@ button:hover {
     background-color: #0d47a1; 
 }
 
-button#reset {
+button#reset-button {
     margin-left: 5px;
 }
 
-button#convert-hex {
+button#hex-button {
     margin-left: 5px;
 }
 
