@@ -8,6 +8,7 @@ const binButton = document.getElementById("bin-button");
 saveButton.addEventListener("click", saveSettings);
 resetButton.addEventListener("click", resetSettings);
 hexButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run-hex" }));
+binButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run-bin" }));
 
 // Set stored user settings
 const local = await chrome.storage.local.get();
