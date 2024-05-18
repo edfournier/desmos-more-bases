@@ -12,3 +12,4 @@ Not unsurprisingly, Desmos uses the [Desmos API](https://www.desmos.com/api/v1.9
 - Set storage size
 - Set signed or unsigned
 - Default settings
+- Other ideas: undo/history, custom keyboard shortcuts (chrome.commands), in-page UI
