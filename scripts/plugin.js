@@ -3,6 +3,7 @@ const mathField = window.Desmos.MathQuill.MathField(
     document.getElementsByClassName("dcg-math-field dcg-focus dcg-mq-editable-field dcg-mq-math-mode")[0]
 );	
 const calc = window.Calc;
+const n = 64;
 
 // Recieve order to execute or state updates from content script
 document.addEventListener("dmb-run-bin", () => run(/0b_\{[0-1]+\}/g));  
@@ -15,7 +16,6 @@ document.addEventListener("dmb-update", (e) => {
  * Convert n-bit binary or hex string to decimal
  */
 function toDecimal(string) {
-    const n = 64;
     if ((string.length - 2) * 4 > n) {
         alert(`${string} is too large for storage size n=${n} bits.`);
         return string;
