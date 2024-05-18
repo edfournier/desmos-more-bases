@@ -1,3 +1,4 @@
+# Introduction
 Desmos More Bases is a small WIP Chrome Extension for the [Desmos Scientific Calculator](https://www.desmos.com/scientific) that evaluates binary and hex literals (e.g. `0b101010` or `0x2A`) in expressions. 
 
 # Implementation
