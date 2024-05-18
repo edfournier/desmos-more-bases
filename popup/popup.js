@@ -1,4 +1,5 @@
 const form = document.getElementById("form");
+const bitsInput = document.getElementById("bits-input");
 const saveButton = document.getElementById("save-button");
 const resetButton = document.getElementById("reset-button");
 const hexButton = document.getElementById("hex-button");
@@ -7,15 +8,20 @@ saveButton.addEventListener("click", saveSettings);
 resetButton.addEventListener("click", resetSettings);
 hexButton.addEventListener("click", () => sendMessageToContent({ event: "dmb-run" }));
 
+// Set stored user settings
+const local = await chrome.storage.local.get();
+bitsInput.value = local["bits-input"] || 64;
+
 /*
  * Saves user settings to local storage and notifies content script
  */
 function saveSettings() {
     const formData = new FormData(form);
-    chrome.storage.local.set(formData.entries().reduce((state, entry) => {
-        state[entry[0]] = entry[1];
-        return state;
+    chrome.storage.local.set(formData.entries().reduce((local, entry) => {
+        local[entry[0]] = entry[1];
+        return local;
     }, {}));
+    // sendMessageToContent({ event: "dmb-update" });
 }
 
 /*
