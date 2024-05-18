@@ -9,9 +9,13 @@ document.addEventListener("dmb-update-settings", (e) => {
  */
 function toDecimal(string) {
     const n = 64;
-    let num = Number(string); 
+    if ((string.length - 2) * 4 > n) {
+        alert(`${string} is too large for storage size n=${n}`);
+        return string;
+    }
+    let num = BigInt(string); 
     // Sign extend
-    if ((num >> (n - 1)) & 1) {
+    if ((num >> BigInt(n - 1)) & BigInt(1)) {
         num |= -1 << n;
     }
     return num; 
@@ -43,6 +47,9 @@ const mathField = document.getElementsByClassName(
 const mq = window.Desmos.MathQuill.MathField(mathField);	
 const calc = window.Calc;
 
+/*
+ * Replace hex literals with decimal in webpage
+ */ 
 function run() {
     let latex = mq.latex();
     extractHex(latex).forEach((hex) => {
