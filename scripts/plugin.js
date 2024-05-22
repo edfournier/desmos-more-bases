@@ -4,7 +4,7 @@ const defaultSettings = {
 
 let settings = defaultSettings;
 
-// Recieve order to execute or state updates from content script
+// Receive order to execute or state updates from content script
 document.addEventListener("dmb-run-bin", () => run(/0b_\{[0-1]+\}/g));  
 document.addEventListener("dmb-run-hex", () => run(/0x([A-Fa-f]|_\{[0-9]+\})+/g));  
 document.addEventListener("dmb-update", (message) => settings = message.detail);

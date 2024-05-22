@@ -4,7 +4,7 @@ script.setAttribute("type", "module");
 script.setAttribute("src", `chrome-extension://${chrome.runtime.id}/scripts/plugin.js`);
 document.head.appendChild(script);
 
-// Recieve messages from popup script
+// Receive messages from popup script
 chrome.runtime.onMessage.addListener(sendMessageToPlugin);
 
 /*
